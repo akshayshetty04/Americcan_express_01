@@ -1,27 +1,31 @@
 const { exec } = require('child_process');
 const path = require('path');
 
-// Function to compare two images using the utils.py script
 const compareImages = (imagePath1, imagePath2) => {
   return new Promise((resolve, reject) => {
-    // Path to the Python script (utils.py)
     const pythonScriptPath = path.join(__dirname, 'machine_learning', 'utils.py');
 
-    // Execute the Python script to compare the images
-    exec(`python "${pythonScriptPath}" "${imagePath1}" "${imagePath2}"`, (err, stdout, stderr) => {
-      if (err) {
-        return reject(`Error executing Python script: ${stderr || err.message}`);
-      }
+    console.log(`Comparing images: ${imagePath1} and ${imagePath2}`);
+    exec(
+      `python "${pythonScriptPath}" "${imagePath1}" "${imagePath2}"`,
+      (err, stdout, stderr) => {
+        if (err) {
+          console.error('Error executing Python script:', stderr || err.message);
+          return reject(new Error('Error in Python script execution'));
+        }
 
-      // If the output contains "Duplicate Image Present", resolve with true
-      if (stdout.includes("Duplicate Image Present")) {
-        resolve(true);
-      } else if (stdout.includes("Unique Image")) {
-        resolve(false);
-      } else {
-        reject("Unexpected output from Python script.");
+        const output = stdout.trim();
+        console.log('Python script output:', output);
+
+        if (output.includes('Duplicate Image Present')) {
+          resolve(true); // Duplicate found
+        } else if (output.includes('Unique Image')) {
+          resolve(false); // Unique image
+        } else {
+          reject(new Error(`Unexpected Python script output: ${output}`));
+        }
       }
-    });
+    );
   });
 };
 

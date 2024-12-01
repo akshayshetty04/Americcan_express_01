@@ -50,7 +50,8 @@
         const data = await response.json();
         if (response.ok) {
           alert('Login successful!');
-          // Redirect to next page or save login state
+          // Redirect to bank.html upon successful login
+          window.location.href = 'bank.html';
         } else {
           alert(data.message || 'Login failed');
         }

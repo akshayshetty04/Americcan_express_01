@@ -42,13 +42,14 @@ def is_duplicate(image1_path, image2_path, mse_threshold=1000, ssim_threshold=0.
 if __name__ == "__main__":
     if len(sys.argv) != 3:
         print("Usage: python image_analysis.py <image1_path> <image2_path>")
-    else:
-        image1_path = sys.argv[1]
-        image2_path = sys.argv[2]
-        try:
-            if is_duplicate(image1_path, image2_path):
-                print("Duplicate Image Present")
-            else:
-                print("Unique Image")
-        except Exception as e:
-            print(f"Error: {e}")
+        sys.exit(1)
+
+    image1_path = sys.argv[1]
+    image2_path = sys.argv[2]
+    try:
+        if is_duplicate(image1_path, image2_path):
+            print("Duplicate Image Present")
+        else:
+            print("Unique Image")
+    except Exception as e:
+        print(f"Error: {e}")
