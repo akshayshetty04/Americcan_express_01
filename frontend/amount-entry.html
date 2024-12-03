@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enter Amount</title>
+  <link rel="stylesheet" href="amount.css">
+</head>
+<body>
+  <header>Enter Amount</header>
+  <div class="wrapper">
+    <div class="amount-container">
+      <div class="profile">
+        <img src="unknown.jpg" alt="Profile Picture" class="profile-img">
+        <!-- Updated ID selectors for name and phone -->
+        <p id="person-name">Unknown</p>
+        <p id="person-phone">+91 00000 00000</p>
+      </div>
+      <div class="amount-display">₹<span id="amount">0</span></div>
+      <div class="numpad">
+        <button onclick="updateAmount('1')">1</button>
+        <button onclick="updateAmount('2')">2</button>
+        <button onclick="updateAmount('3')">3</button>
+        <button onclick="updateAmount('4')">4</button>
+        <button onclick="updateAmount('5')">5</button>
+        <button onclick="updateAmount('6')">6</button>
+        <button onclick="updateAmount('7')">7</button>
+        <button onclick="updateAmount('8')">8</button>
+        <button onclick="updateAmount('9')">9</button>
+        <button onclick="clearAmount()">C</button>
+        <button onclick="updateAmount('0')">0</button>
+        <button onclick="proceedToPin()">→</button>
+      </div>
+    </div>
+  </div>
+  <footer>Secure Pay</footer>
+
+  <script>
+    let amount = "";
+
+    // Update amount display when buttons are clicked
+    function updateAmount(num) {
+      amount += num;
+      document.getElementById("amount").innerText = amount;
+    }
+
+    // Clear the amount display
+    function clearAmount() {
+      amount = "";
+      document.getElementById("amount").innerText = "0";
+    }
+
+    // Proceed to the PIN entry page
+    function proceedToPin() {
+      if (amount === "" || parseFloat(amount) <= 0) {
+        alert("Please enter a valid amount!");
+        return;
+      }
+
+      // Save the amount and redirect to the PIN entry page
+      localStorage.setItem("amount", amount);
+      window.location.href = `pin.html?amount=${amount}`;
+    }
+
+    // Fetch name and phone number from query parameters
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        name: params.get("name") || "Unknown",
+        phone: params.get("phone") || "+91 00000 00000",
+      };
+    }
+
+    // Dynamically update name and phone number
+    window.onload = function () {
+      const { name, phone } = getQueryParams();
+      document.getElementById("person-name").textContent = name;
+      document.getElementById("person-phone").textContent = phone;
+    };
+  </script>
+</body>
+</html>

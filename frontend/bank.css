@@ -1,0 +1,140 @@
+/* Wrapper Box */
+.wrapper {
+  background-color: #d4e1e9; /* White box background */
+  padding: 30px; /* Space inside the box */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(141, 21, 21, 0.2); /* Subtle shadow for depth */
+  max-width: 900px; /* Limit the box width */
+  margin: 40px auto; /* Center the box and add top/bottom spacing */
+  border: 2px solid rgb(113, 67, 113); /* Optional border for visibility */
+}
+
+/* General Styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e1f4f8;
+}
+
+
+/* Header */
+header {
+  background-color: purple;
+  color: white;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 2rem;
+}
+
+/* Menu Container */
+#menu {
+  display: flex; /* Arrange items in a row */
+  flex-wrap: wrap; /* Allow wrapping to next line if space is limited */
+  justify-content: center; /* Center items horizontally */
+  gap: 80px; /* Space between items */
+  padding: 20px;
+  border-radius: 30px;
+  max-width: 650px;
+  margin: auto; /* Center the container horizontally */
+}
+
+/* Menu Item */
+.menu-item {
+  background: #ffffff; /* White background */
+  width: 350px; /* Fixed width */
+  height: 350px; /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border: 1px solid #ddd; /* Light border */
+  transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effect */
+  cursor: pointer;
+}
+
+/* Hover Effect */
+.menu-item:hover {
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+/* Icon Styling */
+.menu-item span {
+  font-size: 2rem; /* Large icon size */
+  margin-bottom: 10px;
+}
+
+/* Text Styling */
+.menu-item div {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333; /* Dark text color */
+}
+
+/* Categories Section */
+#categories {
+  display: flex;
+  max-width: 65px;
+  margin: 40px auto;
+  align-items: center;
+  padding: 25px;
+}
+
+/* Category Header */
+.category h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #0d3482;
+  border-bottom: 2px solid purple;
+  display: inline-block;
+  padding-bottom: 15px;
+}
+
+/* Menu Container for each Category */
+.menu {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap to the next line */
+  gap: 80px; /* Adds space between items */
+  justify-content: flex-start; /* Align items to the left */
+  margin-top: 10px;
+}
+
+/* Menu Item */
+.menu-item {
+  background: #ffffff;
+  width: 150px; /* Width of each item */
+  height: 120px; /* Height of each item */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  transform: translateY(-5px); /* Slight hover effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon Styling */
+.menu-item span {
+  font-size: 2rem; /* Adjust icon size */
+  margin-bottom: 10px;
+  color: purple; /* Icon color */
+}
+
+/* Text Styling */
+.menu-item p {
+  font-size: 1rem;
+  margin: 0;
+  color: #333;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recharge Options</title>
+  <style>
+    /* General body styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e8f1f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Recharge grid container */
+    #recharge-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    /* Individual recharge item styling */
+    .recharge-item {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .recharge-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Icon styles */
+    .recharge-item .icon {
+      font-size: 32px;
+      color: #007bff;
+      margin-bottom: 10px;
+      display: block;
+      font-weight: bold;
+    }
+
+    /* Text styles */
+    .recharge-item span {
+      font-size: 16px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div id="recharge-options">
+    <!-- Recharge options will be dynamically generated here -->
+  </div>
+
+  <script>
+    const rechargeOptions = [
+      { icon: "Jio", text: "Jio Prepaid", link: "plans.html?operator=jio" },
+      { icon: "Airtel", text: "Airtel Prepaid", link: "plans.html?operator=airtel" },
+      { icon: "Vi", text: "Vi Prepaid", link: "plans.html?operator=vi" },
+      { icon: "BSNL", text: "BSNL Prepaid", link: "plans.html?operator=bsnl" },
+    ];
+
+    const rechargeContainer = document.getElementById("recharge-options");
+
+    rechargeOptions.forEach(option => {
+      const optionDiv = document.createElement("div");
+      optionDiv.className = "recharge-item";
+      optionDiv.innerHTML = `
+        <div class="icon">${option.icon}</div>
+        <span>${option.text}</span>
+      `;
+      optionDiv.addEventListener("click", () => {
+        window.location.href = option.link;
+      });
+      rechargeContainer.appendChild(optionDiv);
+    });
+  </script>
+</body>
+</html>

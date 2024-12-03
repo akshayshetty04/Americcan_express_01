@@ -13,14 +13,19 @@ dotenv.config();
 
 const app = express();
 
+// Middleware setup
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
 
+// Serve static files from the 'frontend' directory
+app.use(express.static(path.join(__dirname, '../frontend')));  // Serve static files from frontend
+
+// MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB'))
   .catch(err => console.error('MongoDB connection error:', err));
 
+// Multer configuration for file uploads
 const uploadMultiple = multer({
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
@@ -39,6 +44,21 @@ const uploadMultiple = multer({
   },
 }).array('faceData', 4);
 
+// Default route to serve login.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend', 'login.html'));  // Redirect to login.html from the frontend folder
+});
+
+// Serve other static pages like index.html from the frontend folder
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend', 'login.html'));
+});
+
+app.get('/index', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+});
+
+// POST route for adding users
 app.post('/add-user', (req, res) => {
   uploadMultiple(req, res, async (uploadErr) => {
     if (uploadErr) {
@@ -104,6 +124,8 @@ app.post('/add-user', (req, res) => {
     }
   });
 });
+
+// Delete all users and their images
 app.delete('/delete-all', async (req, res) => {
   try {
     // Delete all users from MongoDB
@@ -148,7 +170,12 @@ app.delete('/delete-all', async (req, res) => {
   }
 });
 
+// Catch-all route for undefined routes
+app.get('*', (req, res) => {
+  res.status(404).send('Page not found');
+});
 
+// Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

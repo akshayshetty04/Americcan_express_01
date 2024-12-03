@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIN Input Page</title>
+  <style>
+    /* Wrapper Box */
+.wrapper {
+  background-color: #1a1212; /* White box background */
+  padding: 30px; /* Space inside the box */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(14, 36, 103, 0.2); /* Subtle shadow for depth */
+  max-width: 900px; /* Limit the box width */
+  margin: 40px auto; /* Center the box and add top/bottom spacing */
+  border: 2px solid purple; /* Optional border for visibility */
+}
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #121212;
+      color: #fff;
+    }
+    .container {
+      text-align: center;
+    }
+    .pin-display {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .digit {
+      width: 40px;
+      height: 50px;
+      margin: 0 5px;
+      font-size: 24px;
+      text-align: center;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      line-height: 50px;
+      background: #21252c;
+      color: #fff;
+    }
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      gap: 25px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .keypad button {
+      width: 60px;
+      height: 60px;
+      font-size: 18px;
+      background: #0b1050f7;
+      border: none;
+      border-radius: 10px;
+      color: #fff;
+      cursor: pointer;
+    }
+    .keypad button.delete {
+      background: #090969;
+    }
+    .keypad button.ok-button {
+      background: #091157;
+    }
+    .keypad button.ok-button:disabled {
+      background: #02071ded;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+  <div class="container">
+    <h1>Enter PIN</h1>
+    <div class="pin-display">
+      <div class="digit" id="digit1"></div>
+      <div class="digit" id="digit2"></div>
+      <div class="digit" id="digit3"></div>
+      <div class="digit" id="digit4"></div>
+    </div>
+    <div class="keypad">
+      <button onclick="addDigit('1')">1</button>
+      <button onclick="addDigit('2')">2</button>
+      <button onclick="addDigit('3')">3</button>
+      <button onclick="addDigit('4')">4</button>
+      <button onclick="addDigit('5')">5</button>
+      <button onclick="addDigit('6')">6</button>
+      <button onclick="addDigit('7')">7</button>
+      <button onclick="addDigit('8')">8</button>
+      <button onclick="addDigit('9')">9</button>
+      <button class="delete" onclick="deleteDigit()">Del</button>
+      <button onclick="addDigit('0')">0</button>
+      <button class="ok-button" id="okButton" onclick="goToNextPage()" disabled>OK</button>
+    </div>
+  </div>
+</div>
+  <script>
+    let currentIndex = 1;
+
+    function addDigit(digit) {
+      if (currentIndex > 4) return;
+
+      const currentField = document.getElementById(`digit${currentIndex}`);
+      currentField.textContent = digit;
+      currentIndex++;
+
+      // Enable the OK button if all digits are filled
+      checkIfComplete();
+    }
+
+    function deleteDigit() {
+      if (currentIndex === 1) return;
+
+      currentIndex--;
+      const currentField = document.getElementById(`digit${currentIndex}`);
+      currentField.textContent = "";
+
+      // Disable the OK button if PIN is incomplete
+      checkIfComplete();
+    }
+
+    function checkIfComplete() {
+      const allDigitsFilled = Array.from({ length: 4 }, (_, i) => {
+        return document.getElementById(`digit${i + 1}`).textContent !== "";
+      }).every(Boolean);
+
+      const okButton = document.getElementById("okButton");
+      okButton.disabled = !allDigitsFilled;
+    }
+
+    function goToNextPage() {
+      if (currentIndex > 4) {
+        alert("PIN entered successfully! Redirecting...");
+        window.location.href = "next-page.html"; // Replace with your desired URL
+      }
+    }
+  </script>
+</body>
+</html>

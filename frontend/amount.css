@@ -1,0 +1,103 @@
+/* Wrapper Box */
+.wrapper {
+  background-color: #ffffff; /* White box background */
+  padding: 30px; /* Space inside the box */
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 8px 16px rgba(175, 50, 50, 0.2); /* Subtle shadow for depth */
+  max-width: 600px; /* Limit the box width */
+  margin: 40px auto; /* Center the box and add top/bottom spacing */
+  border: 2px solid rgb(238, 228, 238); /* Optional border for visibility */
+}
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+  }
+  
+  header {
+    text-align: center;
+    background-color: purple;
+    color: white;
+    padding: 10px;
+  }
+  
+  footer {
+    text-align: center;
+    background-color: purple;
+    color: white;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  /* Menu Page Styles */
+  #menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .menu-item {
+    background: white;
+    width: 10px;
+    height: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .menu-item:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Amount Page Styles */
+  .amount-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .profile {
+    margin: 20px 0;
+  }
+  
+  .profile-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+  }
+  
+  .amount-display {
+    font-size: 2rem;
+    margin: 20px 0;
+  }
+  
+  .numpad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .numpad button {
+    font-size: 1.5rem;
+    padding: 15px;
+    background: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .numpad button:hover {
+    background: #ddd;
+  }
+  

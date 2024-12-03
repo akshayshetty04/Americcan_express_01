@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacts</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e1f4f8;
+    }
+
+    header {
+      background-color: purple;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 2rem;
+    }
+
+    .wrapper {
+      background-color: #d4e1e9;
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      margin: 30px auto;
+    }
+
+    /* Contacts List */
+    #contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact-item {
+      background: #fff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      cursor: pointer;
+    }
+
+    .contact-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: purple;
+    }
+
+    .contact-phone {
+      font-size: 1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>Contacts</header>
+  
+  <div class="wrapper">
+    <!-- Contacts List -->
+    <div id="contacts"></div>
+  </div>
+
+  <script>
+    // Array of contacts with name and phone number
+    const contacts = [
+      { name: "John Doe", phone: "9876543210" },
+      { name: "Jane Smith", phone: "9123456789" },
+      { name: "Alice Johnson", phone: "9988776655" },
+      { name: "Bob Brown", phone: "8899775566" },
+    ];
+
+    // Get the container where the contacts will be displayed
+    const contactsContainer = document.getElementById("contacts");
+
+    // Dynamically generate contact list
+    contacts.forEach((contact) => {
+      const contactDiv = document.createElement("div");
+      contactDiv.className = "contact-item";
+
+      // Add click event to the entire contact item
+      contactDiv.addEventListener("click", () => {
+        window.location.href = "amount-entry.html"; // Navigate to amount-entry.html
+      });
+
+      // Create the contact name
+      const contactName = document.createElement("span");
+      contactName.textContent = contact.name;
+      contactName.className = "contact-name";
+
+      // Create the phone number
+      const contactPhone = document.createElement("span");
+      contactPhone.textContent = `(${contact.phone})`;
+      contactPhone.className = "contact-phone";
+
+      // Append the name and phone number to the contact div
+      contactDiv.appendChild(contactName);
+      contactDiv.appendChild(contactPhone);
+
+      // Append the contact div to the container
+      contactsContainer.appendChild(contactDiv);
+    });
+  </script>
+</body>
+</html>
